@@ -142,3 +142,5 @@ configuration IIS_NET48
         }
     }
 }
+IIS_NET48
+Start-DscConfiguration -Path .\IIS_NET48  -Force -Verbose -Wait
