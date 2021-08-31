@@ -59,9 +59,9 @@ configuration IIS_NET48
           InstallDir = "c:\ProgramData\chocolatey"
         }
 
-        cChocoPackageInstaller InstallNet48
+        cChocoPackageInstaller installNetCoreHosting
         {
-           Name = "netfx-4.8"
+           Name = "dotnet-windowshosting"
            DependsOn = "[cChocoInstaller]installChoco"
         }
 
