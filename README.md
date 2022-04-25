@@ -13,7 +13,7 @@ You will need to run base setup first then the IIS config you want...
 
 
 
-# .NET  and IIS install
+# .NET CORE and IIS install
 `Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/tiernano/powershell-dsc-scripts/main/IIS_NETCORE.ps1'))`
 
 More coming soon...
