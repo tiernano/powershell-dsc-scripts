@@ -28,7 +28,7 @@
 #>
 
 # Configuration Definition
-Configuration CSBP_WindowsServer2019 {
+Configuration CSBP_WindowsServer2022 {
     param (
         [string[]]$ComputerName = 'localhost'
     )
@@ -56,7 +56,7 @@ Configuration CSBP_WindowsServer2019 {
             # CceId: CCE-37432-2
             # DataSource: Security Policy
             # Ensure 'Accounts: Guest account status' is set to 'Disabled' 
-            Accounts_Guest_account_status = 'Disabled' # https://github.com/tiernano/powershell-dsc-scripts/issues/1
+            # Accounts_Guest_account_status = 'Disabled' # turned off for 2022: https://github.com/tiernano/powershell-dsc-scripts/issues/1
 
 
             # CceId: CCE-36534-6

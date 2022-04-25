@@ -1,4 +1,4 @@
-configuration IIS_NET48
+configuration IIS_NETCORE
 {
     Import-DscResource -ModuleName xPSDesiredStateConfiguration
     Import-DscResource -ModuleName PSDesiredStateConfiguration
@@ -54,6 +54,26 @@ configuration IIS_NET48
             LocalPort = 80
         }
 
+        xFirewall AllowHttps443tcp {
+            Name = "HTTPS port 443 TCP"
+            DisplayName = "HTTP port 443"
+            Ensure = "Present"
+            Protocol = "TCP"
+            Enabled = "True"
+            Direction = "InBound"
+            LocalPort = 443
+        }
+
+        xFirewall AllowHttps443udp {
+            Name = "HTTPS port 443 UDP"
+            DisplayName = "HTTPS port 443 UDP"
+            Ensure = "Present"
+            Protocol = "UDP"
+            Enabled = "True"
+            Direction = "InBound"
+            LocalPort = 443
+        }
+
         cChocoInstaller installChoco
         {
           InstallDir = "c:\ProgramData\chocolatey"
@@ -93,4 +113,4 @@ configuration IIS_NET48
     }
 }
 IIS_NET48
-Start-DscConfiguration -Path .\IIS_NET48  -Force -Verbose -Wait
+Start-DscConfiguration -Path .\IIS_NETCORE  -Force -Verbose -Wait
