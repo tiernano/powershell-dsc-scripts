@@ -112,5 +112,5 @@ configuration IIS_NETCORE
         }
     }
 }
-IIS_NET48
+IIS_NETCORE
 Start-DscConfiguration -Path .\IIS_NETCORE  -Force -Verbose -Wait
