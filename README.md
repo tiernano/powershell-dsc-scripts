@@ -8,23 +8,33 @@ You will need to run base setup first then the IIS config you want...
 
 ## Server 2019:
 
-`Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/tiernano/powershell-dsc-scripts/main/base_setup_2019.ps1'))`
+```
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/tiernano/powershell-dsc-scripts/main/base_setup_2019.ps1'))
+```
 
 ## Server 2022:
 
-`Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/tiernano/powershell-dsc-scripts/main/base_setup_2022.ps1'))`
+```
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/tiernano/powershell-dsc-scripts/main/base_setup_2022.ps1'))
+```
 
 ## Either Server without the CSBP harding rules:
 
-`Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/tiernano/powershell-dsc-scripts/main/base_setup_no_CSBP.ps1'))`
+```
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/tiernano/powershell-dsc-scripts/main/base_setup_no_CSBP.ps1'))
+```
 
 # .NET 4.8 and IIS install
-`Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/tiernano/powershell-dsc-scripts/main/IIS_NET48.ps1'))`
+```
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/tiernano/powershell-dsc-scripts/main/IIS_NET48.ps1'))
+```
 
 
 
 # .NET CORE and IIS install
-`Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/tiernano/powershell-dsc-scripts/main/IIS_NETCORE.ps1'))`
+```
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/tiernano/powershell-dsc-scripts/main/IIS_NETCORE.ps1'))
+```
 
 # Whats the scripts do?
 
@@ -56,18 +66,19 @@ The scripts above all, by default, remove the default AppPool and Default site f
 
 ## Make sure a folder exists. 
 
-`       File LoggingPath
+```
+      File LoggingPath
         {
            
             Type = "Directory"
             DestinationPath = "f:\logs\"
             Ensure = "Present"
         }
-`
+```
 
 ## Create an IIS App Pool
 
-`
+```
 xWebAppPool "API"
         {
             DependsOn='[WindowsFeature]IIS'
@@ -81,11 +92,11 @@ xWebAppPool "API"
             startMode = "AlwaysRunning"
             maxProcesses = 1
         }
-`
+```
 
 ## set permissions on a folder to allow an app pool to write to it (app_data)
 
-`
+```
 cNTFSPermissionEntry  "APIAppDataSecurity"
         {
             Ensure = "Present"
@@ -102,13 +113,13 @@ cNTFSPermissionEntry  "APIAppDataSecurity"
                 }
             )
         }
-`
+```
 
 
 
 ## Adding websites to IIS using DSC
 
-`
+```
       xWebSite "API"
         {
             DependsOn='[WindowsFeature]IIS'
@@ -137,7 +148,7 @@ cNTFSPermissionEntry  "APIAppDataSecurity"
                 Windows = $false
             }
         }
-`
+```
 
 More options for the Website are available [here](https://github.com/dsccommunity/WebAdministrationDsc#website)
 
